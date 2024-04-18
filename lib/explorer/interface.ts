@@ -11,7 +11,8 @@ export interface ExplorerData {
     bytecode: string,
     language: string,
     compilerVersion: string,
-    name?: string
+    name?: string,
+    ideURL?: string
 }
 
 export const emptyExplorerData: ExplorerData = {
@@ -26,5 +27,6 @@ export const emptyExplorerData: ExplorerData = {
     explorer: "",
     bytecode: "",
     language: "",
-    compilerVersion: ""
+    compilerVersion: "",
+    ideURL: "",
 }

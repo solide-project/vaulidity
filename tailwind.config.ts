@@ -53,6 +53,18 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        grayscale: {
+          '000': 'var(--color-grayscale-000)',
+          '025': 'var(--color-grayscale-025)',
+          '050': 'var(--color-grayscale-050)',
+          '100': 'var(--color-grayscale-100)',
+          '200': 'var(--color-grayscale-200)',
+          '250': 'var(--color-grayscale-250)',
+          '300': 'var(--color-grayscale-300)',
+          '325': 'var(--color-grayscale-325)',
+          '350': 'var(--color-grayscale-350)',
+          'veil': 'var(--color-grayscale-veil)',
+        }
       },
       borderRadius: {
         lg: "var(--radius)",

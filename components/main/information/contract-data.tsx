@@ -49,7 +49,11 @@ export const ContractData = ({
                 </div>
                 <div className="flex px-5 py-3 gap-x-4 gap-y-1">
                     <div className="w-56">View on Solide IDE:</div>
-                    <div className="break-all flex-1 leading-5">{data?.explorer}</div>
+                    <div className="break-all flex-1 leading-5">
+                        {data?.ideURL &&
+                            <Link className="text-primary hover:underline" target="_blank"
+                                href={data?.ideURL || ""}>{data?.ideURL || ""}</Link>}
+                    </div>
                 </div>
                 <div className="flex px-5 py-3 gap-x-4 gap-y-1">
                     <div className="w-56">Bytecode:</div>

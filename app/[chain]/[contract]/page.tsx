@@ -77,5 +77,7 @@ export default async function Home({
         explorerData.name = source.ContractName
     }
 
+    explorerData.ideURL = `https://solide0x.tech/address/${chain}/${address}`
+
     return <ExplorerDashboard data={explorerData} metadata={metadata} />
 }

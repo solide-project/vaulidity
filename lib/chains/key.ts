@@ -51,6 +51,15 @@ export const getAPIKey = (network: string): string => {
     case ChainID.WEMIX_MAINNET:
     case ChainID.WEMIX_TESTNET:
       return process.env.WEMIXSCAN_API_KEY || ""
+    case ChainID.BLAST_MAINNET:
+    case ChainID.BLAST_SEPOLIA:
+      return process.env.BLASTSCAN_API_KEY || ""
+    case ChainID.FRAXSCAN_MAINNET:
+    case ChainID.FRAXSCAN_TESTNET:
+      return process.env.FRAXSCAN_API_KEY || ""
+    case ChainID.ZKEVM_POLYGON:
+    case ChainID.ZKEVM_POLYGON_CARDONA:
+      return process.env.ZKEVM_POLYSCAN_API_KEY || ""
     default:
       return ""
   }

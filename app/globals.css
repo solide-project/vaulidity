@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -25,6 +24,17 @@
     --input: 220 13% 91%;
     --ring: 262.1 83.3% 57.8%;
     --radius: 0.75rem;
+
+    --color-grayscale-000: #FFFFFF;
+    --color-grayscale-025: #FAFAFA;
+    --color-grayscale-050: #F5F5F5;
+    --color-grayscale-100: #EDEDED;
+    --color-grayscale-200: #DBDDE0;
+    --color-grayscale-250: #BCC1C9;
+    --color-grayscale-300: #6A7380;
+    --color-grayscale-325: #575C66;
+    --color-grayscale-350: #313235;
+    --color-grayscale-veil: rgba(255, 255, 255, 0.8);
   }
 
   .dark {
@@ -47,9 +57,30 @@
     --border: 215 27.9% 16.9%;
     --input: 215 27.9% 16.9%;
     --ring: 263.4 70% 50.4%;
+
+    --color-grayscale-000: #050505;
+    --color-grayscale-025: #131417;
+    --color-grayscale-050: #1C1E21;
+    --color-grayscale-100: #26282C;
+    --color-grayscale-200: #2D3034;
+    --color-grayscale-250: #40454D;
+    --color-grayscale-300: #848990;
+    --color-grayscale-325: #A9ADB1;
+    --color-grayscale-350: #DFE0E2;
+    --color-grayscale-veil: rgba(19, 20, 23, 0.8);
   }
 }
 
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -65,4 +96,8 @@
 ::-webkit-scrollbar-track {
   background: var(--color-grayscale-050);
   border-radius: 4px;
+}
+
+.border-white {
+  border-color: #fff !important;
 }

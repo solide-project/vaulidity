@@ -80,7 +80,7 @@ export function ChainDropdown({ handleOnChange }: ChainDropdownProps) {
                             {(chainList).map((framework) => (
                                 <CommandItem
                                     key={framework.value}
-                                    value={framework.value}
+                                    value={getNetworkNameFromChainID(framework.value)}
                                     onSelect={(currentValue) => {
                                         setValue(framework.value)
                                         handleOnChange && handleOnChange(framework.value)
