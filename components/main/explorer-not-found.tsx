@@ -8,21 +8,25 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const items = [
+    // {
+    //     chain: ChainID.TRON_NILE_TESTNET,
+    //     address: "TE43ModJ1frz3T9uv4bfaARGsTETuPzFnn"
+    // },
     {
         chain: ChainID.TRON_NILE_TESTNET,
-        address: "TE43ModJ1frz3T9uv4bfaARGsTETuPzFnn"
+        address: "TVPaonF8QAWHAi59vcz3a93mQdNSATjnLP"
     }, 
     {
         chain: ChainID.ETHEREUM_MAINNET,
         address: "0xdac17f958d2ee523a2206206994597c13d831ec7"
     }, 
     {
-        chain: ChainID.SHARDEUM_SPHINX_1_X,
-        address: "0x88f8b1027b2e8a4b5397537eb3ed3fc459a3e63f"
+        chain: ChainID.BASE_SEPOLIA,
+        address: "0x289A8325cC454d9369f2bcD589AC3015856fb3cb"
     },
     {
-        chain: ChainID.BITTORRENT_TESTNET,
-        address: "0x602b480060228Cb29A7b132de0b653d48D529771"
+        chain: ChainID.ZKEVM_POLYGON_CARDONA,
+        address: "0xbef6A4ae00eFdea4F1Ed3E4CFC5C8B594AC852FF"
     }
 ]
 
