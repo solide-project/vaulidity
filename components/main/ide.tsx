@@ -4,12 +4,14 @@ import Editor, { useMonaco } from "@monaco-editor/react"
 import { useFileSystem } from "@/components/file-explorer/file-provider"
 
 import { SolideFile } from "@/lib/file"
+import { useTheme } from "next-themes"
 
 interface IDEProps extends React.HTMLAttributes<HTMLDivElement> {
     defaultLanguage?: string
 }
 
 export function IDE({ defaultLanguage = "sol" }: IDEProps) {
+    const { theme } = useTheme()
     const { selectedFile, handleIDEChange } = useFileSystem()
     const [file, setSelectedFile] = useState<SolideFile>({} as SolideFile)
 
@@ -29,14 +31,12 @@ export function IDE({ defaultLanguage = "sol" }: IDEProps) {
         handleIDEChange(selectedFile.filePath, newValue)
     }
 
-    return (
-        <Editor
-            key={file.filePath}
-            height="75vh"
-            // theme={theme === "light" ? "vs" : "vs-dark"}
-            defaultLanguage={defaultLanguage}
-            onChange={onChange}
-            defaultValue={file.content || ""}
-        />
-    )
+    return <Editor
+        key={file.filePath}
+        height="75vh"
+        theme={theme === "light" ? "vs" : "vs-dark"}
+        defaultLanguage={defaultLanguage}
+        defaultValue={file.content || ""}
+        options={{ readOnly: true }}
+    />
 }

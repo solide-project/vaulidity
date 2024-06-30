@@ -1,7 +1,7 @@
-import { ExplorerNotFound } from "@/components/main/explorer-not-found";
+import { HomePage } from "@/components/main/index/homepage";
 
 export default function Home() {
-  return (
-    <ExplorerNotFound />
-  );
+  return <div className="h-[100vh]">
+    <HomePage />
+  </div>
 }

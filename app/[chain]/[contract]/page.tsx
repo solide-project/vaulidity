@@ -44,19 +44,20 @@ export default async function Home({
     if (data.id) {
         metadata = await btfs(data.id)
 
+        explorerData.abi = JSON.stringify(metadata.abi) || "[]"
         explorerData.metadataId = data.id
         explorerData.timestamp = data.timestamp.toString()
         explorerData.status.bytecode = true
         explorerData.language = metadataLib.language(metadata) || "Solidity"
         explorerData.compilerVersion = metadataLib.compilerVersion(metadata) || "Unknown"
         explorerData.name = metadataLib.contractName(metadata)
+        explorerData.settings = JSON.stringify(metadata.settings) || "{}"
     }
 
     const sources = await getSource(address, { chainId: chain, apiKey: getAPIKey(chain) })
     // This means contract is verified
-    if (typeof sources.result !== "string" && sources.result[0].SourceCode) {
+    if (typeof sources.result !== "string" && sources.result[0].SourceCode && sources.result[0].ABI) {
         const source = sources.result[0];
-
         const input = compiler(source.SourceCode)
         if (input) {
             metadata = input
@@ -75,8 +76,18 @@ export default async function Home({
         explorerData.compilerVersion = source.CompilerVersion
         explorerData.status.onchain = true
         explorerData.name = source.ContractName
+        explorerData.abi = source.ABI
+
+        const settings = {
+            optimizer: {
+                enabled: source.OptimizationUsed === "1",
+                runs: source.Runs
+            },
+        }
+        explorerData.settings = JSON.stringify(settings)
     }
 
+    explorerData.chain = chain
     explorerData.ideURL = `https://solide0x.tech/address/${chain}/${address}`
 
     return <ExplorerDashboard data={explorerData} metadata={metadata} />

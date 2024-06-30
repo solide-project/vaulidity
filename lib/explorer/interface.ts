@@ -3,6 +3,7 @@ export interface ExplorerData {
     bytecodeId: string,
     timestamp: number,
     metadataId: string,
+    chain: string,
     status: {
         onchain: boolean,
         bytecode: boolean
@@ -12,7 +13,9 @@ export interface ExplorerData {
     language: string,
     compilerVersion: string,
     name?: string,
-    ideURL?: string
+    ideURL?: string,
+    abi?: string,
+    settings: string,
 }
 
 export const emptyExplorerData: ExplorerData = {
@@ -20,6 +23,7 @@ export const emptyExplorerData: ExplorerData = {
     bytecodeId: "",
     timestamp: 0,
     metadataId: "",
+    chain: "1",
     status: {
         onchain: false,
         bytecode: false
@@ -29,4 +33,6 @@ export const emptyExplorerData: ExplorerData = {
     language: "",
     compilerVersion: "",
     ideURL: "",
+    abi: "",
+    settings: "{}"
 }

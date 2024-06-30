@@ -32,7 +32,7 @@ export const NavBar = ({ }: NavBarProps) => {
     return <div className="flex justify-between px-4 sm:px-8 py-2 border-b sticky">
         <div className="flex items-center space-x-2 cursor-pointer" onClick={() => router.push("/")}>
             <Droplet className="h-8 w-8 text-primary" />
-            <div className="font-bold hidden sm:block">Solidity DB</div>
+            <div className="font-bold hidden sm:block">Vaulidity</div>
         </div>
         <div className="flex space-x-1">
             <div className={"flex items-center max-w-sm space-x-2 border border-gray-300 rounded-lg text-sm"}>

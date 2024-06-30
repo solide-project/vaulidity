@@ -1,10 +1,11 @@
 "use client"
 
 import { ExplorerData } from "@/lib/explorer/interface"
-import { Information } from "./information/information"
-import { SourceIDE } from "./source-ide"
 import { useEffect } from "react"
 import { useFileSystem } from "../file-explorer/file-provider"
+import { ContractHeader } from "./information/contract-header"
+import { ContractTabs } from "./information/tabs/contract-tabs"
+import { ContractData } from "./information/contract-data"
 
 interface ExplorerDashboardProps extends React.HTMLAttributes<HTMLDivElement> {
     data: ExplorerData
@@ -18,14 +19,16 @@ export const ExplorerDashboard = ({
     const { initIDE } = useFileSystem()
 
     useEffect(() => {
-        console.log(data)
+        // console.log(data)
         if (metadata.sources) {
             initIDE(metadata.sources);
         }
     }, [])
 
     return <div className="container">
-        <Information data={data} />
-        <SourceIDE />
+        <ContractHeader data={data} />
+        <hr className="my-4" />
+        <ContractData data={data} />
+        <ContractTabs data={data} />
     </div>
 }

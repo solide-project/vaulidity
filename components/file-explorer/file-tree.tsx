@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ChevronDown, ChevronRight, FileBox } from "lucide-react"
+import { FolderOpen, FolderClosed, FileBox } from "lucide-react"
 
 import { SolideFile, isSolideFile } from "@/lib/file"
 import { cn } from "@/lib/utils"
@@ -11,11 +11,13 @@ import { useFileSystem } from "./file-provider"
 interface FileTreeNodeProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string
   node: any
-  depth: number
 }
 
-const iconSize = "h-4 w-4"
-const FileTreeNode = ({ name, node, depth }: FileTreeNodeProps) => {
+const iconsProps = {
+  size: 18,
+  className: "shrink-0",
+}
+const FileTreeNode = ({ name, node }: FileTreeNodeProps) => {
   const { handleIDEDisplay } = useFileSystem()
   const [isExpanded, setIsExpanded] = useState(false)
 
@@ -23,52 +25,32 @@ const FileTreeNode = ({ name, node, depth }: FileTreeNodeProps) => {
     handleIDEDisplay(node as SolideFile)
   }
 
-  const handleToggle = () => {
-    setIsExpanded(!isExpanded)
-  }
-
-  const getIndentStyle = () => {
-    const baseIndent = 8 // Adjust as needed
-    const indent = baseIndent // * depth;
-    return { marginLeft: `${indent}px` }
-  }
-
   if (isSolideFile(node)) {
-    return (
-      <div onClick={openFile} style={getIndentStyle()}>
-        <span className={cn("flex cursor-pointer space-x-1 items-center")}>
-          <FileBox className={iconSize} />
-          <div>{name}</div>
-        </span>
+    return <div onClick={openFile}
+      className="hover:bg-secondary flex items-center cursor-pointer space-x-1 pl-[16px]">
+      <FileBox {...iconsProps} />
+      <div className="truncate">
+        {name}
       </div>
-    )
+    </div>
   }
 
-  return (
-    <div className="dark:border-white border-l" style={getIndentStyle()}>
-      <div>
-        <span
-          onClick={node ? handleToggle : () => { }}
-          className="flex cursor-pointer items-center"
-        >
-          {isExpanded ? <ChevronDown className={iconSize} /> : <ChevronRight className={iconSize} />} {name}
-        </span>
+  return <div>
+    <div onClick={() => node && setIsExpanded(!isExpanded)}
+      className="hover:bg-secondary flex items-center cursor-pointer space-x-1 pl-[4px]" >
+      {isExpanded ? <FolderOpen {...iconsProps} /> : <FolderClosed {...iconsProps} />}
+      <div className="truncate">
+        {name}
       </div>
-      {isExpanded && node && (
-        <ul style={{ listStyleType: "none" }}>
-          {Object.entries(node).map(([childName, childNode]) => (
-            <li key={childName}>
-              <FileTreeNode
-                name={childName}
-                node={childNode}
-                depth={depth + 1}
-              />
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  )
+    </div >
+    {isExpanded && node && (
+      <ul style={{ listStyleType: "none" }}>
+        {Object.entries(node).map(([childName, childNode]) => <li key={childName}>
+          <FileTreeNode name={childName} node={childNode} />
+        </li>)}
+      </ul>
+    )}
+  </div>
 }
 
 interface FileTreeProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -84,7 +66,9 @@ export const FileTree = ({ name = "root", className }: FileTreeProps) => {
 
   return (
     <div className={cn("w-full h-full overflow-x-auto overflow-y-auto text-sm", className)}>
-      <FileTreeNode name={name} node={fs.fileSystem || {}} depth={0} />
+      {Object.keys(fs.fileSystem || {}).map((key) => {
+        return <FileTreeNode key={key} name={key} node={fs.fileSystem[key]} />
+      })}
     </div>
   )
 }

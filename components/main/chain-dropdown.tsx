@@ -50,26 +50,19 @@ export function ChainDropdown({ handleOnChange }: ChainDropdownProps) {
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
-                <Button
-                    variant="outline"
-                    role="combobox"
-                    aria-expanded={open}
-                    className="w-full justify-between"
-                >
+                <div className="flex items-center justify-center border rounded-lg p-1 px-2">
                     <Image
-                        width={50}
-                        height={50}
+                        width={14}
+                        height={14}
                         alt={getNetworkNameFromChainID(value)}
                         loader={() => getIconByChainId(value)}
                         src={getIconByChainId(value)}
-                        // src={getIconByChainId(chainId.toString())}
                         className={cn(
                             buttonVariants({ size: "icon", variant: "outline" }),
-                            "h-5 w-5 cursor-pointer border-none sm:h-8 sm:w-8"
+                            "cursor-pointer border-none h-5 w-5 sm:h-8 sm:w-8"
                         )}
                     />
-                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                </Button>
+                </div>
             </PopoverTrigger>
             <PopoverContent className="w-full p-0 border-none">
                 <Command>

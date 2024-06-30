@@ -14,19 +14,28 @@ const items = [
     // },
     {
         chain: ChainID.TRON_NILE_TESTNET,
-        address: "TVPaonF8QAWHAi59vcz3a93mQdNSATjnLP"
-    }, 
-    {
-        chain: ChainID.ETHEREUM_MAINNET,
-        address: "0xdac17f958d2ee523a2206206994597c13d831ec7"
-    }, 
-    {
-        chain: ChainID.BASE_SEPOLIA,
-        address: "0x289A8325cC454d9369f2bcD589AC3015856fb3cb"
+        address: "TVPaonF8QAWHAi59vcz3a93mQdNSATjnLP",
+        name: "SolidityDatabaseRegistry"
     },
     {
-        chain: ChainID.ZKEVM_POLYGON_CARDONA,
-        address: "0xbef6A4ae00eFdea4F1Ed3E4CFC5C8B594AC852FF"
+        chain: ChainID.ETHEREUM_MAINNET,
+        address: "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        name: "TetherToken"
+    },
+    {
+        chain: ChainID.BASE_SEPOLIA,
+        address: "0x9Ad37425A145d169bcAe4Abdcde474285522ca22",
+        name: "Dice"
+    },
+    {
+        chain: ChainID.POLYGON_MAINNET,
+        address: "0x11227e54f19934164a81d5add1ce5825d46b2271",
+        name: "UNSRegistry"
+    },
+    {
+        chain: ChainID.ETHEREUM_HOLESKY,
+        address: "0x18bF2989913ac0EadB8113C265bE089A883cF74a",
+        name: "VotingERC721"
     }
 ]
 
@@ -36,7 +45,7 @@ interface ExplorerNotFoundProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const ExplorerNotFound = ({ message }: ExplorerNotFoundProps) => {
     const router = useRouter()
-    
+
     return <div className="container">
         {message && <div className="text-red-500 text-center my-8">{message}</div>}
         <div className="mb-16">
